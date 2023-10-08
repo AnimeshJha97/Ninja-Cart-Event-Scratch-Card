@@ -27,7 +27,8 @@ const ScratchCardComponent = () => {
   }
 
   return (
-    <div style={{display:"flex", borderRadius:"32px", height:isScratched ? "100vh": "auto", width:"100vw", overflow:"hidden", justifyContent:"center", alignItems:"center"}}>
+    <div style={{display:"flex", height:isScratched ? "100vh": "auto", width:"100vw", overflow:"hidden", justifyContent:"center", alignItems:"center",
+    marginTop:"-80px"}}>
       {isScratched && (
         <div style={{position:"absolute", width:"100%",height:"100%", overflow:'hidden', bottom:0, left:0,zIndex:100}}>
           <Lottie height={1000} width={1000} style={{position:"relative", bottom:"-160px", transform:"scale(2.4)", zIndex:100}} loop={false} animationData={Celebration} />
@@ -84,7 +85,8 @@ const ScratchCardComponent = () => {
               width={280}
               height={360}
               image={cardImage}
-              finishPercent={50}
+              finishPercent={30}
+              brushSize={50}
               onComplete={() => { setIsScratched(true); handleMove(); }}
             >
               <PostScratch isScratched={isScratched} />
