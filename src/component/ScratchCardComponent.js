@@ -85,8 +85,8 @@ const ScratchCardComponent = () => {
               width={280}
               height={360}
               image={cardImage}
-              finishPercent={30}
-              brushSize={50}
+              finishPercent={20}
+              brushSize={40}
               onComplete={() => { setIsScratched(true); handleMove(); }}
             >
               <PostScratch isScratched={isScratched} />
