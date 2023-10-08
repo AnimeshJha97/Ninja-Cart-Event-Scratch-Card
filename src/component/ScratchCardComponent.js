@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import ScratchCard from "react-scratchcard-v4";
-import cardImage from "../assets/sc-card.png"
-import cardImage1 from "../assets/sc-card-1.png"
+import cardImage from "../assets/sc-card.jpg"
+import cardImage1 from "../assets/sc-card-1.jpg"
 import PostScratch from './PostScratch';
 import Lottie from "lottie-react"
 import Celebration from "../assets/celebration.json"
