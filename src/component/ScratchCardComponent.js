@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import ScratchCard from "react-scratchcard-v4";
 import cardImage from "../assets/sc-card.png"
+import cardImage1 from "../assets/sc-card-1.png"
 import PostScratch from './PostScratch';
 import Lottie from "lottie-react"
 import Celebration from "../assets/celebration.json"
@@ -8,7 +9,12 @@ import CelebSound from "../assets/confetti.mp3"
 
 const ScratchCardComponent = () => {
   const [isScratched, setIsScratched] = useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
   let audioRef = useRef(null);
+
+  const handleCardClick = () => {
+    setIsFlipped(true)
+  }
 
   const handleMove = () => {
     if (audioRef && audioRef.current ) {
@@ -30,18 +36,61 @@ const ScratchCardComponent = () => {
           </audio>
         </div>
       )}
-      <div style={{borderRadius:"32px", overflow:isScratched? "visible":"hidden"}}>
-        <ScratchCard 
-          // onClick={(e) => handleMove}
-          width= {280}
-          height= {360}
-          image= {cardImage}
-          finishPercent= {40} 
-          onComplete ={() => {setIsScratched(true); handleMove();}} 
-        >        
-          <PostScratch isScratched={isScratched} />
-        </ScratchCard>
-      </div>
+        <div
+          style={{
+            width: "280px",
+            height: "360px",
+            position: "relative",
+            transformStyle: "preserve-3d",
+            transition: "transform 0.8s",
+            transform: isFlipped ? "rotateY(180deg)" : "none",
+          }}
+          onClick={handleCardClick}
+        >
+          <div
+            className="card-front"
+            style={{
+              width: "280px",
+              height: "360px",
+              position: "absolute",
+              backfaceVisibility: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: "32px", overflow: isScratched ? "visible" : "hidden"
+            }}
+          >
+            <img
+              src={cardImage1}
+              alt="Front Card"
+              style={{ width: "100%", maxHeight: "100%" }}
+            />
+          </div>
+          <div
+            className="card-back"
+            style={{
+              width: "280px",
+              height: "360px",
+              position: "absolute",
+              backfaceVisibility: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              transform: "rotateY(180deg)",
+              borderRadius: "32px", overflow: isScratched ? "visible" : "hidden"
+            }}
+          >
+            <ScratchCard
+              width={280}
+              height={360}
+              image={cardImage}
+              finishPercent={50}
+              onComplete={() => { setIsScratched(true); handleMove(); }}
+            >
+              <PostScratch isScratched={isScratched} />
+            </ScratchCard>
+          </div>
+        </div>
     </div>
   )
 }
